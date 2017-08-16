@@ -1,62 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
+using Aplicacao;
 
 namespace AplicacaoTest
-{    
+{
     class FuncionarioTest
     {
         [Test]
-        public void MyFirstTestMethod()
+        public void Funcionario_Apresentacao_Deve_Funcionar_Como_Esperado()
         {
-            Assert.Pass();
+            // arrange
+            var sut = new Funcionario("Maria", "Programadora", 100000);
+            var esperado = "Olá! Meu nome é Maria e eu trabalho como Programadora.";
+
+            // act
+            string obtido = sut.Apresentar();
+
+            // assert
+            Assert.AreEqual(esperado, obtido);
         }
 
         [Test]
-        public void IntroduceMethodShouldWorkCorrectly()
+        public void Funcionario_Dar_Aumento_De_Dez_Porcento_Deve_Aumentar_Salario_De_100_Para_110()
         {
             // arrange
-            var sut = new Employee("Alice", "Programmer", 100000);
-            var expected = "Hi! My name is Alice and I work as a Programmer.";
+            var percentual = 10;
+            var sut = new Funcionario("Bob", "Tester", 100);
+            var esperado = 110;
 
             // act
-            string result = sut.Introduce();
+            sut.DarAumento(percentual);
+            var novoSalario = sut.Salario;
 
             // assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(esperado, novoSalario);
         }
 
         [Test]
-        public void GiveTenPercentRaiseShouldRaiseTheSalaryFrom100To110()
+        public void Funcionario_Tentativa_De_Dar_Aumento_Negativo_Nao_Deve_Fazer_Efeito()
         {
             // arrange
-            var raise = 10;
-            var sut = new Employee("Bob", "Tester", 100);
-            var expected = 110;
+            var percentual = -10;
+            var salario = 100;
+            var sut = new Funcionario("Bob", "Tester", 100);
+            var esperado = salario;
 
             // act
-            sut.GiveRaise(raise);
-            var newSalary = sut.Salary;
+            sut.DarAumento(percentual);
+            var obtido = sut.Salario;
 
             // assert
-            Assert.AreEqual(expected, newSalary);
-        }
-
-        [Test]
-        public void GiveNegativeRaiseShouldHaveNoEffectOnSalary()
-        {
-            // arrange
-            var raise = -10;
-            var salary = 100;
-            var sut = new Employee("Bob", "Tester", salary);
-
-            // act
-            sut.GiveRaise(raise);
-            var newSalary = sut.Salary;
-
-            // assert
-            Assert.AreEqual(salary, newSalary);
+            Assert.AreEqual(esperado, obtido);
         }
     }
+}

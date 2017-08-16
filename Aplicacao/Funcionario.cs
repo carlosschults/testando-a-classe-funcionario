@@ -14,9 +14,9 @@ namespace Aplicacao
 
         public decimal Salario { get; private set; }
 
-        public Funcionario(string funcionario, string cargo, decimal salario)
+        public Funcionario(string nome, string cargo, decimal salario)
         {
-            Nome = Nome;
+            Nome = nome;
             Cargo = cargo;
             Salario = salario;
         }
