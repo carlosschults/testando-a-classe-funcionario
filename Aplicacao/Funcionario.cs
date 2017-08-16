@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Aplicacao
 {
-    public class Class1
+    public class Funcionario
     {
     }
 }
