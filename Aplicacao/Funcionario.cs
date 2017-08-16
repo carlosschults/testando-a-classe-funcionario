@@ -8,5 +8,29 @@ namespace Aplicacao
 {
     public class Funcionario
     {
+        public string Nome { get; private set; }
+
+        public string Cargo { get; private set; }
+
+        public decimal Salario { get; private set; }
+
+        public Funcionario(string funcionario, string cargo, decimal salario)
+        {
+            Nome = Nome;
+            Cargo = cargo;
+            Salario = salario;
+        }
+
+        public string Apresentar()
+        {
+            return $"Olá! Meu nome é {Nome} e eu trabalho como {Cargo}.";
+        }
+
+        public void DarAumento(decimal percentual)
+        {
+            if (percentual < 0)
+                return;
+            Salario = Salario + (Salario * (percentual / 100));
+        }
     }
 }
